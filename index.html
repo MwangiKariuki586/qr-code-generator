@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>QR generator</title>
+</head>
+<body>
+    <div id="main" class="container">
+            <h2>Enter some text or link</h2>
+            <input onkeydown="keydownQr()" type="text" id="textqr"><br>
+            <div class="underline"></div>
+            <div id="qrcontainer" class="qr-container">
+                <img class="qrcode" src="" id="qrresult">
+            </div>
+            <button onclick="handleQr()">Generate</button>
+    </div>
+<script>
+    const container = document.getElementsByClassName('container')
+    const textqr = document.getElementById('textqr')
+    const qrresult = document.getElementById('qrresult')
+    const qrcontainer = document.getElementById('qrcontainer')
+    const qrcode = document.querySelector(".qrcode")
+
+    function keydownQr(){
+        if(textqr.value.length > 0){
+            qrresult.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + textqr.value;
+            qrcontainer.classList.add("qrcontainer-show")
+            document.getElementById("main").style.marginTop = "150px"
+        }
+        
+        else{
+            qrcontainer.classList.remove("qrcontainer-show")
+            // qrcode.style.opacity = "0"
+        }
+    }
+    function handleQr(){
+        if(textqr.value.length > 0){
+            qrresult.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + textqr.value;
+            qrcontainer.classList.add("qrcontainer-show")
+            document.getElementById("main").style.marginTop = "150px"
+        }
+        
+        else{
+            qrcontainer.classList.remove("qrcontainer-show")
+            alert("please enter some text or link")
+            
+        }
+        
+    }
+</script>
+</body>
+</html>
